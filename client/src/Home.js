@@ -1,7 +1,7 @@
 function Home() {
   return (
     <main className="container">
-      <h1>Home</h1>
+      <h1>Kimon Monokandilos</h1>
     </main>
   );
 }
