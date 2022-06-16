@@ -30,10 +30,10 @@ function Header() {
   }
 
   return (
-    <nav className="header navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <nav className="header navbar navbar-expand-md navbar-light bg-light fixed-top ">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          Full Stack Starter
+          Kiki's Recipes
         </Link>
         <button
           className="navbar-toggler"
@@ -50,6 +50,11 @@ function Header() {
             <li className="nav-item active">
               <Link className="nav-link" aria-current="page" to="/">
                 Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/about">
+                About
               </Link>
             </li>
             <div className="flex-grow-1 d-flex justify-content-end">
