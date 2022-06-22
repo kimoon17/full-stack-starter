@@ -11,6 +11,8 @@ import Register from './Register';
 import UserRoutes from './Users/UserRoutes';
 
 import About from './About';
+import Food from './Food';
+import Detail from './Detail';
 
 function App() {
   return (
@@ -19,7 +21,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/detail/:id" element={<Detail />} />
           <Route path="/about" element={<About />} />
+          <Route path="/food" element={<Food />} />
           <Route path="/login" element={<Login />} />
           <Route path="/passwords/*" element={<PasswordRoutes />} />
           {process.env.REACT_APP_FEATURE_REGISTRATION === 'true' && <Route path="/register" element={<Register />} />}
