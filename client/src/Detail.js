@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import './Detail.scss';
 
 function Detail() {
   const { id } = useParams();
@@ -18,11 +19,17 @@ function Detail() {
   );
 
   return (
-    <main id="container">
-      <h1>
-        Detail: {id} {data?.fields?.food_name}
-      </h1>
-      <p>{JSON.stringify(data)}</p>
+    <main className="detail-container">
+      <h1 className="detail-heading">{data?.fields?.food_name}</h1>
+      <div className="img-container">
+        <img className="detail-img" src={data?.fields?.food_image} />
+      </div>
+      <p>
+        <strong>Ingredients:</strong> {data?.fields?.food_ingredients}
+      </p>
+      <p>
+        <strong>Instructions:</strong> {data?.fields?.food_instructions}
+      </p>
     </main>
   );
 }
