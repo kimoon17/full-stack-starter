@@ -1,0 +1,16 @@
+[
+  {
+    "model": "dishes",
+    "data": {
+      "id": 1,
+      "food_name": "Test fixture 1"
+    }
+  },
+  {
+    "model": "dishes",
+    "data": {
+      "id": 2,
+      "food_name": "Test fixture 2"
+    }
+  }
+]
