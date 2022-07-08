@@ -3,14 +3,20 @@
     "model": "dishes",
     "data": {
       "id": 1,
-      "food_name": "Test fixture 1"
+      "food_name": "Test fixture 1",
+      "food_image": "Test fixture 1",
+      "food_ingredients": "test fixture 1",
+      "food_instructions": "test fixture 1"
     }
   },
   {
     "model": "dishes",
     "data": {
       "id": 2,
-      "food_name": "Test fixture 2"
+      "food_name": "Test fixture 2",
+      "food_image": "Test fixture 2",
+      "food_ingredients": "test fixture 2",
+      "food_instructions": "test fixture 2"
     }
   }
 ]
