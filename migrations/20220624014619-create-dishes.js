@@ -15,10 +15,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       food_ingredients: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       food_instructions: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,

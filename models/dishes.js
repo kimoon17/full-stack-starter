@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       food_name: DataTypes.STRING,
       food_image: DataTypes.STRING,
-      food_ingredients: DataTypes.STRING,
-      food_instructions: DataTypes.STRING,
+      food_ingredients: DataTypes.TEXT,
+      food_instructions: DataTypes.TEXT,
     },
     {
       sequelize,

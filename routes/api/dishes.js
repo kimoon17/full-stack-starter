@@ -14,4 +14,14 @@ router.get('/', async (req, res) => {
   res.json(records.map((r) => r.toJSON()));
 });
 
+// path: /api/items/:id
+router.get('/:id', async (req, res) => {
+  const record = await models.dishes.findByPk(req.params.id);
+  if (record) {
+    res.json(record.toJSON());
+  } else {
+    res.status(HttpStatus.NOT_FOUND).end();
+  }
+});
+
 module.exports = router;

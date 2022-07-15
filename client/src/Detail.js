@@ -10,7 +10,7 @@ function Detail() {
   useEffect(
     function () {
       if (id) {
-        fetch(`https://api.airtable.com/v0/appm1y6M0Hw6ZkDvG/dishes/${id}?api_key=keyU6v1pSNASaRh2E`)
+        fetch(`/api/items/${id}`)
           .then((response) => response.json())
           .then((data) => setData(data));
       }
@@ -20,15 +20,15 @@ function Detail() {
 
   return (
     <main className="detail-container">
-      <h1 className="detail-heading">{data?.fields?.food_name}</h1>
+      <h1 className="detail-heading">{data?.food_name}</h1>
       <div className="img-container">
-        <img className="detail-img" src={data?.fields?.food_image} />
+        <img className="detail-img" src={data?.food_image} />
       </div>
       <p>
-        <strong>Ingredients:</strong> {data?.fields?.food_ingredients}
+        <strong>Ingredients:</strong> {data?.food_ingredients}
       </p>
       <p>
-        <strong>Instructions:</strong> {data?.fields?.food_instructions}
+        <strong>Instructions:</strong> {data?.food_instructions}
       </p>
     </main>
   );
