@@ -42,4 +42,56 @@ router.post('/', interceptors.requireAdmin, async (req, res) => {
   }
 });
 
+router.patch('/:id', interceptors.requireAdmin, async (req, res) => {
+  try {
+    let record;
+    await models.sequelize.transaction(async (transaction) => {
+      record = await models.dishes.findByPk(req.params.id, { transaction });
+      if (record) {
+        await record.update(_.pick(req.body, ['Title', 'Text', 'AttachmentUrl']), { transaction });
+      }
+    });
+    if (record) {
+      res.json(record.toJSON());
+    } else {
+      res.status(HttpStatus.NOT_FOUND).end();
+    }
+  } catch (error) {
+    if (error.name === 'SequelizeValidationError') {
+      res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
+        status: HttpStatus.UNPROCESSABLE_ENTITY,
+        errors: error.errors,
+      });
+    } else {
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).end();
+    }
+  }
+});
+
+router.delete('/:id', interceptors.requireAdmin, async (req, res) => {
+  try {
+    let record;
+    await models.sequelize.transaction(async (transaction) => {
+      record = await models.dishes.findByPk(req.params.id, { transaction });
+      if (record) {
+        await record.destroy({ transaction });
+      }
+    });
+    if (record) {
+      res.status(HttpStatus.OK).end();
+    } else {
+      res.status(HttpStatus.NOT_FOUND).end();
+    }
+  } catch (error) {
+    if (error.name === 'SequelizeValidationError') {
+      res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
+        status: HttpStatus.UNPROCESSABLE_ENTITY,
+        errors: error.errors,
+      });
+    } else {
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).end();
+    }
+  }
+});
+
 module.exports = router;
