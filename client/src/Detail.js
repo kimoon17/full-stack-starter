@@ -10,7 +10,7 @@ function Detail() {
   useEffect(
     function () {
       if (id) {
-        fetch(`/api/items/${id}`)
+        fetch(`/api/dishes/${id}`)
           .then((response) => response.json())
           .then((data) => setData(data));
       }

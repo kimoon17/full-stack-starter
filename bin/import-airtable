@@ -11,12 +11,12 @@ fetch(`https://api.airtable.com/v0/appm1y6M0Hw6ZkDvG/dishes?api_key=keyU6v1pSNAS
   .then(async (data) => {
     for (const record of data.records) {
       const { fields } = record;
-      const item = models.dishes.build({
+      const dishes = models.dishes.build({
         food_name: fields.food_name,
         food_image: fields.food_image,
         food_ingredients: fields.food_ingredients,
         food_instructions: fields.food_instructions,
       });
-      await item.save();
+      await dishes.save();
     }
   });
