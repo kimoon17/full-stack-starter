@@ -24,4 +24,22 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// path: /api/items/post
+router.post('/', interceptors.requireAdmin, async (req, res) => {
+  try {
+    const record = await models.dishes.create(_.pick(req.body, ['food_name', 'food_image', 'food_ingredients', 'food_instructions']));
+    res.status(HttpStatus.CREATED).json(record.toJSON());
+  } catch (error) {
+    if (error.name === 'SequelizeValidationError') {
+      res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
+        status: HttpStatus.UNPROCESSABLE_ENTITY,
+        errors: error.errors,
+      });
+    } else {
+      console.log(error.name);
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).end();
+    }
+  }
+});
+
 module.exports = router;
