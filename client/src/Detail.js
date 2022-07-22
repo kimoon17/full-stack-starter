@@ -1,10 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useAuthContext } from './AuthContext';
 import './Detail.scss';
 
 function Detail() {
   const { id } = useParams();
-
+  const { user } = useAuthContext();
   const [data, setData] = useState();
 
   useEffect(
@@ -30,6 +31,13 @@ function Detail() {
       <p>
         <strong>Instructions:</strong> {data?.food_instructions}
       </p>
+      {user?.isAdmin && (
+        <p>
+          <Link to="edit" className="btn btn-primary">
+            Edit
+          </Link>
+        </p>
+      )}
     </main>
   );
 }

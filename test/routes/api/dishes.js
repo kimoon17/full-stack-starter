@@ -76,5 +76,41 @@ describe('/api/dishes', () => {
         assert.deepStrictEqual(item.food_instructions, 'mix and eat.');
       });
     });
+    describe('PATCH /:id', () => {
+      it('updates an existing Item', async () => {
+        const response = await testSession
+          .patch('/api/dishes/1')
+          .set('Accept', 'application/json')
+          .send({
+            food_name: 'Test fixture 1',
+            food_image: 'Test fixture 1',
+            food_ingredients: 'test fixture 1',
+            food_instructions: 'test fixture 1',
+          })
+          .expect(HttpStatus.OK);
+
+        const { id, food_name, food_image, food_ingredients, food_instructions } = response.body;
+        assert.deepStrictEqual(id, 1);
+        assert.deepStrictEqual(food_name, 'Test fixture 1');
+        assert.deepStrictEqual(food_image, 'Test fixture 1');
+        assert.deepStrictEqual(food_ingredients, 'test fixture 1');
+        assert.deepStrictEqual(food_instructions, 'test fixture 1');
+
+        const item = await models.dishes.findByPk(id);
+        assert(item);
+        assert.deepStrictEqual(item.food_name, 'Test fixture 1');
+        assert.deepStrictEqual(item.food_image, 'Test fixture 1');
+        assert.deepStrictEqual(item.food_ingredients, 'test fixture 1');
+        assert.deepStrictEqual(item.food_instructions, 'test fixture 1');
+      });
+    });
+
+    describe('DELETE /:id', () => {
+      it('deletes an existing Item', async () => {
+        await testSession.delete('/api/dishes/1').expect(HttpStatus.OK);
+        const item = await models.dishes.findByPk(1);
+        assert.deepStrictEqual(item, null);
+      });
+    });
   });
 });

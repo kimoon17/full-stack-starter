@@ -36,6 +36,23 @@ const Api = {
       return instance.post('/api/auth/register', data);
     },
   },
+  dishes: {
+    index() {
+      return instance.get('/api/dishes');
+    },
+    get(id) {
+      return instance.get(`/api/dishes/${id}`);
+    },
+    create(data) {
+      return instance.post('/api/dishes', data);
+    },
+    update(id, data) {
+      return instance.patch(`/api/dishes/${id}`, data);
+    },
+    delete(id) {
+      return instance.delete(`/api/dishes/${id}`);
+    },
+  },
   passwords: {
     reset(email) {
       return instance.post('/api/passwords', { email });

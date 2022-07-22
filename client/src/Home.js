@@ -1,8 +1,11 @@
 import Items from './Components/Items';
 import './Home.scss';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuthContext } from './AuthContext';
 
 function Home() {
+  const { user } = useAuthContext();
   const [items, setItems] = useState([]);
 
   useEffect(function () {
@@ -25,6 +28,15 @@ function Home() {
             food_instructions={item.food_instructions}
           />
         ))}
+      </div>
+      <div className="row">
+        {user?.isAdmin && (
+          <p>
+            <Link to="/detail/new" className="btn btn-primary">
+              New Dish
+            </Link>
+          </p>
+        )}
       </div>
     </main>
   );

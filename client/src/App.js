@@ -9,6 +9,7 @@ import Login from './Login';
 import PasswordRoutes from './Passwords/PasswordRoutes';
 import Register from './Register';
 import UserRoutes from './Users/UserRoutes';
+import ItemForm from './ItemForm';
 
 import About from './About';
 import Food from './Food';
@@ -21,6 +22,22 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route
+            path="/detail/new"
+            element={
+              <AuthProtected isAdminRequired={true}>
+                <ItemForm />
+              </AuthProtected>
+            }
+          />
+          <Route
+            path="/detail/:id/edit"
+            element={
+              <AuthProtected isAdminRequired={true}>
+                <ItemForm />
+              </AuthProtected>
+            }
+          />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/about" element={<About />} />
           <Route path="/food" element={<Food />} />

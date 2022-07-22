@@ -9,7 +9,7 @@ function Items({ id, food_name, food_image, food_ingredients, food_instructions 
         <h5 className="card-title">{food_name}</h5>
         <p className="card-text"></p>
         <Link to={`/detail/${id}`} className="btn btn-primary">
-          Go somehwere
+          Click Me
         </Link>
       </div>
     </div>
